@@ -5,8 +5,7 @@ jobs:
   build:
     name: gcc-9 build
     runs-on: self-hosted
-    container: ubuntu:20.04
-    #container: embeddedlinux/gcc:9-20.04
+    container: embeddedlinux/gcc:9-20.04
 
     steps:
       - uses: actions/checkout@v3
