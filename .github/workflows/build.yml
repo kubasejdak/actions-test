@@ -1,8 +1,5 @@
 name: Test build action
-
-on: 
-  push:
-  pull_request:
+on: [push]
 
 jobs:
   build:
@@ -10,22 +7,22 @@ jobs:
     runs-on: self-hosted
     container: embeddedlinux/gcc:9-20.04
 
-  steps:
-    - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: Print env
-      run: |
-        echo github.event.action: ${{ github.event.action }}
-        echo github.event_name: ${{ github.event_name }}
+      - name: Print env
+        run: |
+          echo github.event.action: ${{ github.event.action }}
+          echo github.event_name: ${{ github.event_name }}
 
-    - name: Look around
-      run: |
-        echo "================"
-        whoami
-        echo "================"
-        pwd
-        echo "================"
-        ls -al
-        echo "================"
-        id
-        echo "================"
+      - name: Look around
+        run: |
+          echo "================"
+          whoami
+          echo "================"
+          pwd
+          echo "================"
+          ls -al
+          echo "================"
+          id
+          echo "================"
