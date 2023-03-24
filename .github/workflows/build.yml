@@ -11,10 +11,17 @@ jobs:
       - uses: actions/checkout@v3
       - name: Look around
         run: |
+          echo "=================="
           whoami
+          echo "=================="
           pwd
+          echo "=================="
           cd
+          echo "=================="
+          pwd
+          echo "=================="
           ls -al
+          echo "=================="
           id
       - name: Check conan
         run: |
