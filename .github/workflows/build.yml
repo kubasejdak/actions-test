@@ -1,31 +1,22 @@
-name: Test build action
+name: test
 on: [push]
 env:
   HOME: /home/builder
 
 jobs:
   build:
-    name: gcc-9 build
     runs-on: self-hosted
-    container: embeddedlinux/gcc:9-20.04
-
+    strategy:
+      matrix:
+        include:
+          - preset: linux-gcc-debug
+            image: embeddedlinux/gcc:11-22.04
+    name: Build ${{ matrix.preset }}
+    container: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v3
-      - name: Look around
+      - name: Build 
         run: |
-          echo "=================="
-          whoami
-          echo "=================="
-          pwd
-          echo "=================="
-          cd
-          echo "=================="
-          pwd
-          echo "=================="
-          ls -al
-          echo "=================="
-          id
-      - name: Check conan
-        run: |
-          conan --version
-          conan install catch2/3.3.2@
+          mkdir cmake-build-${{ matrix.preset }} && cd "$_"
+          cmake .. --preset ${{ matrix.preset }}
+          make
