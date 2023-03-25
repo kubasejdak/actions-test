@@ -18,6 +18,7 @@ jobs:
       - name: Build 
         run: |
           ls -al
-          mkdir cmake-build-${{ matrix.preset }} && cd "$_"
+          mkdir cmake-build-${{ matrix.preset }}
+          cd cmake-build-${{ matrix.preset }}
           cmake .. --preset ${{ matrix.preset }}
           make
