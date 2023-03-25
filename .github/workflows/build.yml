@@ -57,12 +57,12 @@ jobs:
             preset: linux-gcc-debug
           - image: embeddedlinux/clang:14-22.04
             preset: linux-clang-debug
-    name: Test ${{ matrix.preset }}
+    name: Valgrind ${{ matrix.preset }}
     container: ${{ matrix.image }}
     needs: build
     steps:
       - uses: actions/download-artifact@v3
-      - name: Run test
+      - name: Run valgrind
         run: |
           cd ${{ matrix.preset }}
           chmod +x ./actions-test
