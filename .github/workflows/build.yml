@@ -23,12 +23,10 @@ jobs:
           cd cmake-build
           cmake .. --preset ${{ matrix.preset }}
           make
-      - name: Tar files
-        run: tar -cvf ${{ matrix.preset }}.tar cmake-build/actions-test
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.preset }}
-          path: ${{ matrix.preset }}.tar
+          path: cmake-build/actions-test
 
   test:
     runs-on: self-hosted
@@ -44,8 +42,6 @@ jobs:
     needs: build
     steps:
       - uses: actions/download-artifact@v3
-        with:
-          name: ${{ matrix.preset }}
       - name: Run test
         run: |
           pwd
