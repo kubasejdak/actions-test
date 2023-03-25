@@ -15,7 +15,8 @@
     {
       "name": "linux-clang-debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "clang++"
       }
     }
   ]
