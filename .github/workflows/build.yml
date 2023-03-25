@@ -46,5 +46,5 @@ jobs:
           name: ${{ matrix.preset }}
       - name: Run test
         run: |
-          cd cmake-build/bin
-          ./template-app
+          cd cmake-build
+          ./actions-test
