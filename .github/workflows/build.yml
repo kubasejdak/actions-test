@@ -11,6 +11,8 @@ jobs:
         include:
           - preset: linux-gcc-debug
             image: embeddedlinux/gcc:11-22.04
+          - preset: linux-clang-debug
+            image: embeddedlinux/clang:14-22.04
     name: Build ${{ matrix.preset }}
     container: ${{ matrix.image }}
     steps:
