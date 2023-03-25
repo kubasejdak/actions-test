@@ -48,7 +48,7 @@ jobs:
           chmod +x ./actions-test
           ./actions-test
 
-valgrind:
+  valgrind:
     runs-on: self-hosted
     strategy:
       matrix:
