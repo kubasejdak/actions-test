@@ -1,5 +1,7 @@
 name: Test build action
 on: [push]
+env:
+  HOME: /home/builder
 
 jobs:
   build:
