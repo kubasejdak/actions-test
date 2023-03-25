@@ -19,11 +19,32 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build 
         run: |
-          mkdir cmake-build-${{ matrix.preset }}
-          cd cmake-build-${{ matrix.preset }}
+          mkdir cmake-build
+          cd cmake-build
           cmake .. --preset ${{ matrix.preset }}
           make
       - uses: alehechka/upload-tartifact@v1
         with:
           name: ${{ matrix.preset }}
-          path: cmake-build-${{ matrix.preset }}/actions-test
+          path: cmake-build/actions-test
+
+  test:
+    runs-on: [self-hosted, build]
+    strategy:
+      matrix:
+        include:
+          - image: embeddedlinux/gcc:11-22.04
+            preset: linux-gcc-debug
+          - image: embeddedlinux/clang:14-22.04
+            preset: linux-clang-debug
+    name: Test ${{ matrix.preset }}
+    container: ${{ matrix.image }}
+    needs: build
+    steps:
+      - uses: alehechka/download-tartifact@v1
+        with:
+          name: ${{ matrix.preset }}
+      - name: Run test
+        run: |
+          cd cmake-build/bin
+          ./template-app
