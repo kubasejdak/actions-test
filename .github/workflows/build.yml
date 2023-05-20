@@ -22,6 +22,7 @@ jobs:
           cd cmake-build
           cmake .. --preset ${{ matrix.preset }}
           make
+          conan help
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.preset }}
