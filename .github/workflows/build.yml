@@ -10,11 +10,12 @@ jobs:
       matrix:
         include:
           - preset: linux-gcc-debug
-            image: embeddedlinux/gcc:11-22.04
+            image: embeddedlinux/gcc2:11-22.04
           - preset: linux-clang-debug
-            image: embeddedlinux/clang:14-22.04
+            image: embeddedlinux/clang2:14-22.04
     name: Build ${{ matrix.preset }}
     container: ${{ matrix.image }}
+       
     steps:
       - uses: actions/checkout@v3
       - name: Build 
@@ -33,9 +34,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: embeddedlinux/gcc:11-22.04
+          - image: embeddedlinux/gcc2:11-22.04
             preset: linux-gcc-debug
-          - image: embeddedlinux/clang:14-22.04
+          - image: embeddedlinux/clang2:14-22.04
             preset: linux-clang-debug
     name: Test ${{ matrix.preset }}
     container: ${{ matrix.image }}
@@ -53,9 +54,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: embeddedlinux/gcc:11-22.04
+          - image: embeddedlinux/gcc2:11-22.04
             preset: linux-gcc-debug
-          - image: embeddedlinux/clang:14-22.04
+          - image: embeddedlinux/clang2:14-22.04
             preset: linux-clang-debug
     name: Valgrind ${{ matrix.preset }}
     container: ${{ matrix.image }}
