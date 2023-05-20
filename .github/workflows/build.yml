@@ -23,6 +23,7 @@ jobs:
           cmake .. --preset ${{ matrix.preset }}
           make
           conan help
+          touch dupa
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.preset }}
