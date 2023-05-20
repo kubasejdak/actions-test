@@ -54,10 +54,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: embeddedlinux/gcc2:11-22.04
+          - image: embeddedlinux/valgrind:22.04
             preset: linux-gcc-debug
-          - image: embeddedlinux/clang2:14-22.04
-            preset: linux-clang-debug
     name: Valgrind ${{ matrix.preset }}
     container: ${{ matrix.image }}
     needs: build
